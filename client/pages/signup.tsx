@@ -1,7 +1,8 @@
 import axios from 'axios';
 import Head from 'next/head';
+import Link from 'next/link';
 import React from 'react';
-import '../styles/form.module.css'
+
 
 
 const signup = () => {
@@ -36,20 +37,47 @@ axios.post(`http://localhost:5000/api/auth/signup`,data)
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
-                {/* basic form setup */}
 
-<form onSubmit={handleSubmit} className='form' >
+            <>
+            <div className="container">
 
-<input type="text" name="name" placeholder='type your Name' required /> <br /><br />
-<input type="username" name="username" placeholder='type your Name' required /> <br /><br />
-<input type="email" name="email" placeholder='type your Email' required /> <br /><br />
-<input type="password" name="password" placeholder='type your Password' required /> <br /><br />
-<input type="submit" value="Register Now" />
+    <div className="panel">
+        <form className='form' onSubmit={handleSubmit}>
+
+        <div className="panel-group">
+            <input className="input" type="text" name='name' required />
+            <span className="border"></span>
+            <label>Name</label>
+        </div>
+        <div className="panel-group">
+            <input className="input" type="username" name='username' required />
+            <span className="border"></span>
+            <label>Username</label>
+        </div>
+        <div className="panel-group">
+            <input className="input" type="email" name='email' required />
+            <span className="border"></span>
+            <label>Email</label>
+        </div>
+
+        <div className="panel-group">
+            <input className="input" name='password' type="password" required />
+            <span className="border"></span>
+            <label>Password</label>
+        </div>
+
+        <button type="submit">Signup</button>
+
+        </form>
+        <div className="panel-footer">
+            <p><Link href={''} >Forgotten password?</Link></p>
+            <p>Not a member? <Link href="/signup">Sign up now</Link></p>
+        </div>
+    </div>
+</div>
 
 
-</form>
-
-
+        </>
 
             </main>
         </>

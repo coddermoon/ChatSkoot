@@ -11,7 +11,7 @@ const login = () => {
         e.preventDefault()
      
         const form = e.target
-        const username = form.email.value 
+        const username = form.username.value 
         const password = form.password.value
         const data = {username: username, password: password}
 
@@ -44,15 +44,38 @@ const login = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             
-            <form onSubmit={handleSubmit} className='form' >
+            <>
+            <div className="container">
+   
+    <div className="panel">
+        <form className='form' onSubmit={handleSubmit}>
+
+        <div className="panel-group">
+            <input className="input" type="username" name='username' required />
+            <span className="border"></span>
+            <label>Username</label>
+        </div>
+
+        <div className="panel-group">
+            <input className="input" name='password' type="password" required />
+            <span className="border"></span>
+            <label>Password</label>
+        </div>
+
+        <button type="submit">Login</button>
+
+        </form>
+
+        <div className="panel-footer">
+            <p><Link href={''} >Forgotten password?</Link></p>
+            <p>Not a member? <Link href="/signup">Sign up now</Link></p>
+        </div>
+
+    </div>
+</div>
 
 
-<input type="username" name="email" placeholder='type your Email' required /> <br /><br />
-<input type="password" name="password" placeholder='type your Password' required /> <br /><br />
-<input type="submit" value="Login" />
-
-
-</form>
+        </>
         </>
     );
 };
