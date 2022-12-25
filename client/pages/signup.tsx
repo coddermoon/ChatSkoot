@@ -20,7 +20,7 @@ const signup = () => {
 // call api to post data
 
 axios.post(`http://localhost:5000/api/auth/signup`,data)
-.then(res=>res.json())
+.then(data=> console.log(data))
 .catch(err=>console.error(err.message))
 
 
