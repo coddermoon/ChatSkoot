@@ -17,7 +17,7 @@ export default function Home() {
       </Head>
     <div className="main  max-h-screen w-full bg-bgPrimary bg-fixed">
     <Sidenav/>
-    <main className="main-content relative  min-h-screen w-full md:pl-[280px] lg:pl-[280px]">
+    <main className="main-content relative  min-h-screen w-full md:pl-[280px] lg:pl-[310px]">
         <div className="z-50 relative">
         <div>content</div>
         </div>

@@ -10,7 +10,7 @@ const Sidenav = () => {
 
     return (
         <div
-      className={`navbar bg-bgSecondary min-h-screen ${
+      className={`navbar bg-bgSecondary min-h-screen  ${
         isOpen ? "translate-x-[-280px]" : "translate-x-0"
       }  md:translate-x-0 lg:translate-x-0    md:block lg:block fixed z-[999] `}
     >
@@ -40,7 +40,7 @@ const Sidenav = () => {
 
     <div onClick={toggle} >
       <hr className='text-white mt-3' />
-  <div className=' overflow-x-hidden h-[calc(100vh_-_12rem)] '>
+  <div className=' overflow-x-hidden h-[calc(100vh_-_12rem)]  '>
   <Users/>
    <Users/>
    <Users/>

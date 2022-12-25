@@ -27,6 +27,6 @@
 
 # <strong>Technologies :</strong>
 
-## <strong>Frontend</strong> : Nextjs , Material Ui, typeScript
+## <strong>Frontend</strong> : Nextjs , Tailwind CSS, typeScript,
 ## <strong>Backend</strong> : Expressjs , Mongoose , Socket io
 
