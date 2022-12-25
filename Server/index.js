@@ -4,6 +4,9 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config()
+const userRoutes = require('./routes/userRoutes');
+const { register } = require('./controller/userController');
+const router = require('./routes/userRoutes');
 
 // dotenv required configuration
 
@@ -14,6 +17,19 @@ const url = process.env.DB_URL
 
 const app = express()
 app.use(express.json())
+app.use(cors())
+
+// all route declarations
+
+app.use(router,register)
+
+
+
+
+// basic single page workflow
+
+
+
 
 // mongodb connections
 mongoose.set('strictQuery', false);
@@ -21,6 +37,7 @@ mongoose.connect(url , {
     useNewUrlParser: true,
     useUnifiedTopology: true,
  
+
   })
 .then(()=>{
     console.log('database connection successful')
