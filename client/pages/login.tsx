@@ -1,17 +1,37 @@
+import axios from 'axios';
 import Head from 'next/head';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 
 const login = () => {
+    const router = useRouter()
 
     const handleSubmit = (e) => {
         e.preventDefault()
      
         const form = e.target
-        const email = form.email.value 
+        const username = form.email.value 
         const password = form.password.value
-        const data = {email: email, password: password}
+        const data = {username: username, password: password}
 
         // login authenticaton
+
+        axios.post(`http://localhost:5000/api/auth/login`,data)
+.then(data=> {
+    const {status,msg} = data.data
+
+    if(!status){
+        alert(msg)
+    }else{
+        alert('successfully logged in')
+        router.push('/');
+    }
+
+   
+
+})
+.catch(err=>console.error(err.message))
 
     }
 
@@ -27,7 +47,7 @@ const login = () => {
             <form onSubmit={handleSubmit} className='form' >
 
 
-<input type="email" name="email" placeholder='type your Email' required /> <br /><br />
+<input type="username" name="email" placeholder='type your Email' required /> <br /><br />
 <input type="password" name="password" placeholder='type your Password' required /> <br /><br />
 <input type="submit" value="Login" />
 
