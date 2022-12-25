@@ -34,6 +34,7 @@ app.use(router,register)
 // mongodb connections
 mongoose.set('strictQuery', false);
 mongoose.connect(url , {
+  dbName: `chat-application`,
     useNewUrlParser: true,
     useUnifiedTopology: true,
  

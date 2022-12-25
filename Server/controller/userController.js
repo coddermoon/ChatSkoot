@@ -14,6 +14,7 @@ module.exports.register = async(req,res,next) => {
       // email chacked
       const userEmailCheck = await User.findOne({username})
       if(userEmailCheck)
+      
       return res.json({msg:'email already exist'})
     
       // store password in database
