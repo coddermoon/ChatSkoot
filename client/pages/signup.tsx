@@ -3,6 +3,7 @@ import Head from 'next/head';
 import React from 'react';
 import '../styles/form.module.css'
 
+
 const signup = () => {
 
     const handleSubmit = async(e) => {
@@ -10,10 +11,11 @@ const signup = () => {
      
      const form = e.target
      const name = form.name.value 
+     const username = form.username.value 
      const email = form.email.value
      const password = form.password.value
      const data = {
-        name,email,password
+        name,email,password,username
      }
 // call api to post data
 
@@ -39,12 +41,15 @@ axios.post(`http://localhost:5000/api/auth/signup`,data)
 <form onSubmit={handleSubmit} className='form' >
 
 <input type="text" name="name" placeholder='type your Name' required /> <br /><br />
+<input type="username" name="username" placeholder='type your Name' required /> <br /><br />
 <input type="email" name="email" placeholder='type your Email' required /> <br /><br />
 <input type="password" name="password" placeholder='type your Password' required /> <br /><br />
 <input type="submit" value="Register Now" />
 
 
 </form>
+
+
 
             </main>
         </>
