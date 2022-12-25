@@ -7,10 +7,10 @@ import React from 'react';
 const login = () => {
     const router = useRouter()
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+const handleSubmit = (event) => {
+        event.preventDefault()
      
-        const form = e.target
+        const form = event.target
         const username = form.username.value 
         const password = form.password.value
         const data = {username: username, password: password}
@@ -44,11 +44,11 @@ const login = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             
-            <>
+            <div className='bg-bgSecondary'>
             <div className="container">
    
     <div className="panel">
-        <form className='form' onSubmit={handleSubmit}>
+        <form className='form' onSubmit={(event)=>handleSubmit(event)}>
 
         <div className="panel-group">
             <input className="input" type="username" name='username' required />
@@ -75,7 +75,7 @@ const login = () => {
 </div>
 
 
-        </>
+        </div>
         </>
     );
 };

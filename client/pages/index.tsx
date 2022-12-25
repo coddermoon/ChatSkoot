@@ -1,6 +1,7 @@
 import Head from 'next/head'
 
 import { Inter } from '@next/font/google'
+import Sidenav from '../Components/sidenav'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -14,9 +15,22 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-    <>
-     <h2>hello</h2>
-    </>
+    <div className="main  max-h-screen w-full bg-bgPrimary bg-fixed">
+    <Sidenav/>
+    <main className="main-content relative  min-h-screen w-full md:pl-[280px] lg:pl-[280px]">
+        <div className="z-50 relative">
+        <div>content</div>
+        </div>
+        <div>
+          <div className="wave_anim ">
+            <div className="wave wave1"></div>
+            <div className="wave wave2"></div>
+            <div className="wave wave3"></div>
+            <div className="wave wave4"></div>
+          </div>
+        </div>
+      </main>
+    </div>
     </>
   )
 }

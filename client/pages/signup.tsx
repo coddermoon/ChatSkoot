@@ -38,7 +38,7 @@ axios.post(`http://localhost:5000/api/auth/signup`,data)
             </Head>
             <main>
 
-            <>
+            <div className='bg-bgSecondary'>
             <div className="container">
 
     <div className="panel">
@@ -77,7 +77,7 @@ axios.post(`http://localhost:5000/api/auth/signup`,data)
 </div>
 
 
-        </>
+        </div>
 
             </main>
         </>
