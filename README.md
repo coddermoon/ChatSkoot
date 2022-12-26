@@ -28,5 +28,5 @@
 # <strong>Technologies :</strong>
 
 ## <strong>Frontend</strong> : Nextjs , Tailwind CSS, typeScript,DaisyUI
-## <strong>Backend</strong> : Expressjs , Mongoose , Socket io
+## <strong>Backend</strong> : Expressjs , Mongoose , Socket io ,bcrypt
 
