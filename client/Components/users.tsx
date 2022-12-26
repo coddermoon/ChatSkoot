@@ -3,7 +3,7 @@ import React from 'react';
 
 const Users = () => {
     return (
-        <div className='h-20 bg-bgPrimary m-6 gap-5 rounded p-2'>
+        <div className='h-20 bg-bgPrimary  gap-5 rounded p-4'>
           <div className="profileImg flex gap-2 justify-center flex-wrap items-center overflow-hidden">
           <Image width={50} height={50} 
             className="w-[50px] rounded-full border-[4px] border-primary"

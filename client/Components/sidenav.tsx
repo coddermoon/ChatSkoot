@@ -16,7 +16,7 @@ const Sidenav = () => {
     >
       {/* toggle bar */}
 
-      <div className="absolute top-4 left-[300px] md:hidden lg:hidden text-white z-[999]">
+      <div className="absolute top-4 left-[280px] md:hidden lg:hidden text-white z-[999]">
         <h2 onClick={toggle} className="text-white font-bold text-3xl pointer">
           {isOpen ? <HiMenuAlt1 /> : <RxCrossCircled />}
         </h2>
