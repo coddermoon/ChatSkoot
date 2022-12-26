@@ -299,3 +299,30 @@ label {
 		background-position-x: -1000px;
 	}
 }
+
+.chatContainer{
+  grid:
+    "nav" 71px
+    "chats" 1fr
+    "msgBox" 78px
+}
+
+.msgBox{
+  display: grid;
+  grid: 51px / 32px 1fr;
+  align-content: center;
+  align-items: center;
+  grid-gap: 15px;
+  grid-area: msgBox;
+  border-radius: 0 0 10px 0;
+  border-top: 2px solid rgba(0, 0, 0, 0.25);
+  padding-left: 10px;
+  padding-right: 22px;
+}
+
+.sideNavClass{
+  grid:
+  "profileImg" auto
+  "chats" 1fr
+  "footer" 200px
+}

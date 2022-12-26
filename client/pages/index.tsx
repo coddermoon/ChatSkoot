@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Image from 'next/image'
 
 
 import Sidenav from '../Components/sidenav'
@@ -15,24 +16,44 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-    <div className="main  max-h-screen w-full bg-bgPrimary bg-fixed">
-    <Sidenav/>
-    <main className="main-content relative  min-h-screen w-full md:pl-[280px] lg:pl-[280px]">
-        <div className="z-50 relative">
-        <div>
-          <h2 className="text-3xl text-white">hello</h2>
+      <div className="main  max-h-screen w-full bg-bgPrimary bg-fixed">
+        <Sidenav />
+        <main className="main-content relative  min-h-screen w-full md:pl-[280px] lg:pl-[280px]">
+          <div className="z-50 relative">
+            <div className='chatContainer h-screen grid '>
+
+              <div className="nav text-white">hello nav</div>
+              <div className="chats text-white">chats</div>
+
+              <div className="msgBox grid  content-center items-center gap-6  text-white">
+
+            
+                
+                <Image width={70} height={70} src='/images/attachment.png' alt='attachment'/> 
+
+               
+             
+       <div> 
+        <input type="text" className='w-full p-2 rounded outline-none bg-bgSecondary' placeholder="Type a message" />
         </div>
-        </div>
-        <div>
-          <div className="wave_anim ">
-            <div className="wave wave1"></div>
-            <div className="wave wave2"></div>
-            <div className="wave wave3"></div>
-            <div className="wave wave4"></div>
+
+              </div>
+
+
+
+
+            </div>
           </div>
-        </div>
-      </main>
-    </div>
+          <div>
+            <div className="wave_anim ">
+              <div className="wave wave1"></div>
+              <div className="wave wave2"></div>
+              <div className="wave wave3"></div>
+              <div className="wave wave4"></div>
+            </div>
+          </div>
+        </main>
+      </div>
     </>
   )
 }
