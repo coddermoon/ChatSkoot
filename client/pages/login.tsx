@@ -5,13 +5,13 @@ import  { useRouter } from 'next/router';
 
 import React from 'react';
 
-const login = () => {
+const Login = () => {
     const router = useRouter()
 
-const handleSubmit = (event) => {
+const handleSubmit:React.FormEventHandler<HTMLFormElement> = (event) => {
        event.preventDefault()
      
-        const form = event.target
+        const form = event.target as HTMLFormElement
         const username = form.username.value 
         const password = form.password.value
         const data = {username: username, password: password}
@@ -81,4 +81,4 @@ const handleSubmit = (event) => {
     );
 };
 
-export default login;
+export default Login;

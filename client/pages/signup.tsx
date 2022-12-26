@@ -7,11 +7,11 @@ import React from 'react';
 
 const signup = () => {
 
-    const handleSubmit = async(e) => {
+    const handleSubmit:React.FormEventHandler<HTMLFormElement> = async(e) => {
      e.preventDefault()
      
-     const form = e.target
-     const name = form.name.value 
+     const form = e.target as HTMLFormElement
+     const name = form.fullName.value 
      const username = form.username.value 
      const email = form.email.value
      const password = form.password.value
@@ -45,7 +45,7 @@ axios.post(`http://localhost:5000/api/auth/signup`,data)
         <form className='form' onSubmit={handleSubmit}>
 
         <div className="panel-group">
-            <input className="input" type="text" name='name' required />
+            <input className="input" type="text" name='fullName' required />
             <span className="border"></span>
             <label>Name</label>
         </div>
