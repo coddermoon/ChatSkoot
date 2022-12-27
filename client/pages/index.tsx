@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import Image from 'next/image'
 import MessageBox from '../Components/MessageBox'
@@ -10,6 +11,8 @@ import TopNav from '../Components/TopNav'
 
 
 export default function Home() {
+
+
   return (
     <>
       <Head>
@@ -47,7 +50,7 @@ export default function Home() {
 
                 <Image width={70} height={70} src='/images/attachment.png' alt='attachment' />
 
-
+               
 
                 <div>
                   <input type="text" className='w-full p-2 rounded outline-none bg-bgSecondary' placeholder="Type a message" />

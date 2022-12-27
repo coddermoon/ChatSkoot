@@ -69,6 +69,7 @@ module.exports.users = async(req,res,next) => {
     const users = await User.find({ _id: { $ne: req.params.id } }).select([
       "email",
       "username",
+      "name",
       "avatarImage",
       "_id",
     ]);

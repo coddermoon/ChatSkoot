@@ -1,5 +1,6 @@
+import axios from 'axios';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { HiMenuAlt1 } from "react-icons/hi";
 import { RxCrossCircled } from "react-icons/rx";
 import Users from './users';
@@ -7,6 +8,17 @@ import Users from './users';
 const Sidenav = () => {
     const [isOpen, setIsOpen] = useState(true);
     const toggle = () => setIsOpen(!isOpen);
+
+    const [users,setUsers] = useState<any[]>([])
+
+    useEffect( ()=>{
+
+     axios.get('http://localhost:5000/api/users')
+      
+      .then(res=>setUsers(res.data))
+
+    },[])
+
 
     return (
         <div
@@ -41,15 +53,12 @@ const Sidenav = () => {
     <div onClick={toggle} >
       <hr className='text-white mt-3' />
   <div className=' overflow-x-hidden h-[calc(100vh_-_12rem)]  '>
-  <Users/>
-   <Users/>
-   <Users/>
-   <Users/>
-   <Users/>
-   <Users/>
-   <Users/>
-   <Users/>
-   <Users/>
+ {
+  users.map((user) => <Users
+  key ={user._id}
+  user={user}
+  />)
+ }
   </div>
     </div>
 
