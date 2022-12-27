@@ -1,8 +1,10 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import MessageBox from '../Components/MessageBox'
 
 
 import Sidenav from '../Components/sidenav'
+import TopNav from '../Components/TopNav'
 
 
 
@@ -22,20 +24,39 @@ export default function Home() {
           <div className="z-50 relative">
             <div className='chatContainer h-screen grid '>
 
-              <div className="nav text-white">hello nav</div>
-              <div className="chats text-white">chats</div>
+              <div className="nav text-white">
+
+                {/* topNav sectiopn  */}
+
+<TopNav/>
+
+              </div>
+              <div className="chats text-white flex flex-col-reverse px-5 overflow-y-scroll">
+
+<MessageBox/>
+<MessageBox/>
+<MessageBox/>
+<MessageBox/>
+<MessageBox/>
+<MessageBox/>
+<MessageBox/>
+<MessageBox/>
+<MessageBox/>
+<MessageBox/>
+
+              </div>
 
               <div className="msgBox grid  content-center items-center gap-6  text-white">
 
-            
-                
-                <Image width={70} height={70} src='/images/attachment.png' alt='attachment'/> 
 
-               
-             
-       <div> 
-        <input type="text" className='w-full p-2 rounded outline-none bg-bgSecondary' placeholder="Type a message" />
-        </div>
+
+                <Image width={70} height={70} src='/images/attachment.png' alt='attachment' />
+
+
+
+                <div>
+                  <input type="text" className='w-full p-2 rounded outline-none bg-bgSecondary' placeholder="Type a message" />
+                </div>
 
               </div>
 
