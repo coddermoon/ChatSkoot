@@ -5,7 +5,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config()
 const userRoutes = require('./routes/userRoutes');
-const { register, login } = require('./controller/userController');
+const { register, login, users } = require('./controller/userController');
 const router = require('./routes/userRoutes');
 
 // dotenv required configuration
@@ -23,6 +23,7 @@ app.use(cors())
 
 app.use(router,register)
 app.use(router,login)
+app.use(router,users)
 
 
 

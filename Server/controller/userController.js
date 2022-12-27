@@ -42,17 +42,18 @@ module.exports.login = async (req, res, next) => {
     if (user) {
       bcrypt.compare(password, user.password, (err, result) => {
         if (err) {
-          res.status(400).json({ msg: "something went wrong" });
+          res.json({  msg: "something went wrong" });
         }
         if (result) {
-          return res.json({ status: 200, user: user });
+          let token = jwt.sign({  name: user.name, id: user._id},'secret',{expiresIn:'12h'})
+           res.json({ status:200, msg: "login successfull" ,token, user:user});
         } else {
-          res.status(400).json({ msg: "password doesnt match" });
+          res.json({  msg: "password doesnt match" });
         }
       });
     } else {
       res.json({
-        status: 400,
+       
         msg: "user not found",
       });
     }
@@ -60,3 +61,20 @@ module.exports.login = async (req, res, next) => {
 
   
 };
+
+// load all user data
+
+module.exports.users = async(req,res,next) => {
+  try {
+    const users = await User.find({ _id: { $ne: req.params.id } }).select([
+      "email",
+      "username",
+      "avatarImage",
+      "_id",
+    ]);
+    return res.json(users);
+  } catch (err) {
+    next(err);
+  }
+
+}
