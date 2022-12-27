@@ -22,7 +22,7 @@ export default function Home() {
         <Sidenav />
         <main className="main-content relative  min-h-screen w-full md:pl-[280px] lg:pl-[280px]">
           <div className="z-50 relative">
-            <div className='chatContainer h-screen grid '>
+            <div className='chatContainer max-h-screen grid '>
 
               <div className="nav text-white">
 
@@ -35,16 +35,11 @@ export default function Home() {
 
 <MessageBox/>
 <MessageBox/>
-<MessageBox/>
-<MessageBox/>
-<MessageBox/>
-<MessageBox/>
-<MessageBox/>
-<MessageBox/>
-<MessageBox/>
-<MessageBox/>
+
 
               </div>
+
+              {/* message options */}
 
               <div className="msgBox grid  content-center items-center gap-6  text-white">
 

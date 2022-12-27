@@ -302,9 +302,9 @@ label {
 
 .chatContainer{
   grid:
-    "nav" 71px
+    "nav" 80px
     "chats" 1fr
-    "msgBox" 78px
+    "msgBox" 70px
 }
 
 .msgBox{
