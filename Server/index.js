@@ -7,6 +7,7 @@ require('dotenv').config()
 const userRoutes = require('./routes/userRoutes');
 const { register, login, users } = require('./controller/userController');
 const router = require('./routes/userRoutes');
+const socket = require('socket.io')
 
 // dotenv required configuration
 
@@ -51,3 +52,30 @@ mongoose.connect(url , {
 // listening port
 
 const server =  app.listen(port,()=> console.log('listening on port',port))
+
+// intrigate socket to realtime chat
+
+const io = socket(server,
+  {
+    cors: {
+      origin: '*',
+      credentials:true,
+    }
+  })
+
+  // global object for online chat
+
+  global.onlineUsers = new Map();
+io.on("connection", (socket) => {
+  global.chatSocket = socket;
+  socket.on("add-user", (userId) => {
+    onlineUsers.set(userId, socket.id);
+  });
+
+  socket.on("send-msg", (data) => {
+    const sendUserSocket = onlineUsers.get(data.to);
+    if (sendUserSocket) {
+      socket.to(sendUserSocket).emit("msg-recieve", data.msg);
+    }
+  });
+});
