@@ -20,11 +20,13 @@ const handleSubmit:React.FormEventHandler<HTMLFormElement> = (event) => {
 
         axios.post(`http://localhost:5000/api/auth/login`,data)
 .then(data=> {
-    const {status,msg} = data.data
+    
+    const {status,msg,user} = data.data
 
     if(!status){
         alert(msg)
     }else{
+        localStorage.setItem('user',JSON.stringify(user))
         alert('successfully logged in')
         router.push('/');
     }

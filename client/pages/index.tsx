@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 import MessageBox from '../Components/MessageBox'
 
 
@@ -11,6 +12,20 @@ import TopNav from '../Components/TopNav'
 
 
 export default function Home() {
+
+  const [appUser,setAppUser]= useState({})
+
+  useEffect(()=>{
+
+   const userData  = localStorage.getItem('user')
+   if (userData) {
+      setAppUser(JSON.parse(userData))
+   }
+ 
+
+  },[])
+
+  console.log(appUser)
 
 
   return (

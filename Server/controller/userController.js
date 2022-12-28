@@ -45,10 +45,11 @@ module.exports.login = async (req, res, next) => {
           res.json({  msg: "something went wrong" });
         }
         if (result) {
-          let token = jwt.sign({  name: user.name, id: user._id},'secret',{expiresIn:'12h'})
+          let token = jwt.sign({  name: user.name, id: user._id},'secret',{expiresIn:'1m'})
            res.json({ status:200, msg: "login successfull" ,token, user:user});
         } else {
-          res.json({  msg: "password doesnt match" });
+         
+          res.json({  msg: "password doesn't match" });
         }
       });
     } else {
