@@ -7,7 +7,7 @@ import Users from './users';
 
 const Sidenav = () => {
     const [isOpen, setIsOpen] = useState(true);
-    const [selectedUser,setSelectedUser]= useState({});
+    const [selectedUser,setSelectedUser]= useState<any>('');
     const toggle = () => setIsOpen(!isOpen);
 
     const [users,setUsers] = useState<any[]>([])
@@ -22,10 +22,8 @@ const Sidenav = () => {
 
     // handle clicked on current users
 
-   const  handleSelectedUser = (id:any)=>{
-    console.log('click on current user',id)
-   
-    }
+    console.log(selectedUser)
+
 
 
     return (
@@ -66,7 +64,8 @@ const Sidenav = () => {
   
   key ={user._id}
   user={user}
-  handleSelectedUser={handleSelectedUser}
+  setSelectedUser={setSelectedUser}
+
  
 
   />)
