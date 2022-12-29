@@ -7,13 +7,19 @@ import MessageBox from '../Components/MessageBox'
 
 import Sidenav from '../Components/sidenav'
 import TopNav from '../Components/TopNav'
+import Wellcome from '../Components/Wellcome'
 
 
 
 
 export default function Home() {
+  const [selectedUser, setSelectedUser] = useState<any>(undefined);
 
   const [appUser, setAppUser] = useState({})
+
+  // handle undefined Problem
+
+
 
   useEffect(() => {
 
@@ -37,55 +43,65 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="main max-h-screen w-full bg-bgPrimary bg-fixed">
-        <Sidenav />
-        <main className="main-content relative  max-h-screen w-full md:pl-[280px] lg:pl-[280px]">
-          <div className="z-50 relative">
-            <div className='chatContainer h-screen grid '>
+        <Sidenav
+          selectedUser={selectedUser}
+          setSelectedUser={setSelectedUser}
+        />
 
-              <div className="nav text-white">
+{
+  !selectedUser ? <Wellcome/> :
+  
+  <main className="main-content relative  max-h-screen w-full md:pl-[280px] lg:pl-[280px]">
+  <div className="z-50 relative">
+    <div className='chatContainer h-screen grid '>
 
-                {/* topNav sectiopn  */}
+      <div className="nav text-white">
 
-                <TopNav 
-                appUser={appUser}
-                />
+        {/* topNav sectiopn  */}
 
-              </div>
-              <div className="chats text-white flex flex-col-reverse px-5 overflow-y-scroll">
+        <TopNav
+          appUser={appUser}
+          selectedUser={selectedUser}
+        />
 
-                <MessageBox
-                  appUser={appUser}
-                />
+      </div>
+      <div className="chats text-white flex flex-col-reverse px-5 overflow-y-scroll">
 
-
-
-              </div>
-
-              {/* message options */}
-
-              <div className="msgBox grid  content-center items-center gap-6  text-white">
-
-
-
-                <Image width={70} height={70} src='/images/attachment.png' alt='attachment' />
+        <MessageBox
+          appUser={appUser}
+        />
 
 
 
-                <div>
-                  <input type="text" className='w-full p-2 rounded outline-none bg-bgSecondary' placeholder="Type a message" />
-                </div>
+      </div>
 
-              </div>
+      {/* message options */}
 
-
+      <div className="msgBox grid  content-center items-center gap-6  text-white">
 
 
-            </div>
-          </div>
-          <div>
 
-          </div>
-        </main>
+        <Image width={70} height={70} src='/images/attachment.png' alt='attachment' />
+
+
+
+        <div>
+          <input type="text" className='w-full p-2 rounded outline-none bg-bgSecondary' placeholder="Type a message" />
+        </div>
+
+      </div>
+
+
+
+
+    </div>
+  </div>
+  <div>
+
+  </div>
+</main>
+}
+
       </div>
     </>
   )

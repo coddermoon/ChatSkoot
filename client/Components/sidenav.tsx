@@ -5,9 +5,9 @@ import { HiMenuAlt1 } from "react-icons/hi";
 import { RxCrossCircled } from "react-icons/rx";
 import Users from './users';
 
-const Sidenav = () => {
+const Sidenav = ({selectedUser,setSelectedUser}) => {
     const [isOpen, setIsOpen] = useState(true);
-    const [selectedUser,setSelectedUser]= useState<any>('');
+   
     const toggle = () => setIsOpen(!isOpen);
 
     const [users,setUsers] = useState<any[]>([])
@@ -22,7 +22,7 @@ const Sidenav = () => {
 
     // handle clicked on current users
 
-    console.log(selectedUser)
+   
 
 
 
