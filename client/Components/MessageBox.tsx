@@ -1,7 +1,7 @@
 import React from 'react';
 
 const MessageBox = ({appUser,selectedUser,socket}) => {
-    console.log(socket)
+ 
     const user = appUser
     
     return (

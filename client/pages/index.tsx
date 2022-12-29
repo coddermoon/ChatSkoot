@@ -40,9 +40,14 @@ export default function Home() {
 
   const handleMessage = (e)=>{
     e.preventDefault()
-    setMsg(e.target.msg.value)
+  setMsg(e.target.msg.value)
+    socket.current.emit("send-msg", {
+      to: selectedUser._id,
+      from: appUser._id,
+      msg:msg
+    });
 
-  
+  console.log(msg)
 
   }
 
@@ -110,7 +115,7 @@ useEffect(() => {
 
 
         <form onSubmit={handleMessage}>
-          <input type="text" name="msg" className='w-full p-2 rounded outline-none bg-bgSecondary' placeholder="Type a message" />
+          <input type="text" onChange={(e) => setMsg(e.target.value)} name="msg" className='w-full p-2 rounded outline-none bg-bgSecondary' placeholder="Type a message" />
         </form>
 
       </div>
