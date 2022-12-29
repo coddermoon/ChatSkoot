@@ -7,7 +7,8 @@ require('dotenv').config()
 const userRoutes = require('./routes/userRoutes');
 const { register, login, users } = require('./controller/userController');
 const router = require('./routes/userRoutes');
-const socket = require('socket.io')
+const socket = require('socket.io');
+const { addMessage, getMessages } = require('./controller/msgControler');
 
 // dotenv required configuration
 
@@ -25,7 +26,8 @@ app.use(cors())
 app.use(router,register)
 app.use(router,login)
 app.use(router,users)
-
+app.use(router, addMessage);
+app.use(router, getMessages);
 
 
 

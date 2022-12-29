@@ -14,6 +14,7 @@ import Wellcome from '../Components/Wellcome'
 
 
 export default function Home() {
+  const[ msg,setMsg] = useState('')
   const socket = useRef<any>()
   const [selectedUser, setSelectedUser] = useState<any>(undefined);
 
@@ -32,6 +33,14 @@ export default function Home() {
 
 
   }, [])
+
+
+  // handle message
+
+  const handleMessage = (e)=>{
+    e.preventDefault()
+    setMsg(e.target.msg.value)
+  }
 
 // setup io
 
@@ -96,9 +105,9 @@ useEffect(() => {
 
 
 
-        <div>
-          <input type="text" className='w-full p-2 rounded outline-none bg-bgSecondary' placeholder="Type a message" />
-        </div>
+        <form onSubmit={handleMessage}>
+          <input type="text" name="msg" className='w-full p-2 rounded outline-none bg-bgSecondary' placeholder="Type a message" />
+        </form>
 
       </div>
 
