@@ -7,7 +7,7 @@ const Users = (user: any) => {
 
 
   const {name, username}= user.user
-  console.log(name)
+
     return (
         <div className='h-20 bg-bgPrimary  gap-5 rounded p-4'>
           <div className="profileImg flex gap-2  flex-wrap items-center overflow-hidden">

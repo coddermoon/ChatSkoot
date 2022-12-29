@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 
-const TopNav = () => {
+const TopNav = ({appUser}:{appUser:object}) => {
     return (
         <div className='shadow-2xl z-20 '>
             <div className="flex justify-between items-center mx-16">
@@ -14,7 +14,7 @@ const TopNav = () => {
             alt="a"
           ></Image>
           <div>
-            <p className='text-white sm:text-md'>Mahamodul Hasan Moon</p>
+            <p className='text-white sm:text-md'>sabikun</p>
             <p className=' text-sm text-secondaryWhite'>Active now</p>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import dynamic from 'next/dynamic'
+
 import Head from 'next/head'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
@@ -13,19 +13,19 @@ import TopNav from '../Components/TopNav'
 
 export default function Home() {
 
-  const [appUser,setAppUser]= useState({})
+  const [appUser, setAppUser] = useState({})
 
-  useEffect(()=>{
+  useEffect(() => {
 
-   const userData  = localStorage.getItem('user')
-   if (userData) {
+    const userData = localStorage.getItem('user')
+    if (userData) {
       setAppUser(JSON.parse(userData))
-   }
- 
+    }
 
-  },[])
 
-  console.log(appUser)
+  }, [])
+
+
 
 
   return (
@@ -36,23 +36,27 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="main  max-h-screen w-full bg-bgPrimary bg-fixed">
+      <div className="main max-h-screen w-full bg-bgPrimary bg-fixed">
         <Sidenav />
-        <main className="main-content relative  min-h-screen w-full md:pl-[280px] lg:pl-[280px]">
+        <main className="main-content relative  max-h-screen w-full md:pl-[280px] lg:pl-[280px]">
           <div className="z-50 relative">
-            <div className='chatContainer max-h-screen grid '>
+            <div className='chatContainer h-screen grid '>
 
               <div className="nav text-white">
 
                 {/* topNav sectiopn  */}
 
-<TopNav/>
+                <TopNav 
+                appUser={appUser}
+                />
 
               </div>
               <div className="chats text-white flex flex-col-reverse px-5 overflow-y-scroll">
 
-<MessageBox/>
-<MessageBox/>
+                <MessageBox
+                  appUser={appUser}
+                />
+
 
 
               </div>
@@ -65,7 +69,7 @@ export default function Home() {
 
                 <Image width={70} height={70} src='/images/attachment.png' alt='attachment' />
 
-               
+
 
                 <div>
                   <input type="text" className='w-full p-2 rounded outline-none bg-bgSecondary' placeholder="Type a message" />
@@ -79,12 +83,7 @@ export default function Home() {
             </div>
           </div>
           <div>
-            <div className="wave_anim ">
-              <div className="wave wave1"></div>
-              <div className="wave wave2"></div>
-              <div className="wave wave3"></div>
-              <div className="wave wave4"></div>
-            </div>
+
           </div>
         </main>
       </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 
-const MessageBox = () => {
+const MessageBox = ({appUser}:{appUser:object}) => {
+    const user = appUser
     return (
         <div>
             <div className="yourMsg mb-6 flex flex-col ">
