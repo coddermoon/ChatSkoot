@@ -2,8 +2,11 @@ import React from 'react';
 
 const Wellcome = () => {
     return (
-        <div>
-            <h1 className="text06xl">Werllcome</h1>
+        <div className='h-screen flex items-center justify-center'>
+         <div className='text-center'>
+         <h1 className="text-6xl  mb-5 text-white">Wellcome to</h1> 
+            <h2 className='text-4xl text-white font-medium'>Chatskoot</h2>
+         </div>
         </div>
     );
 };

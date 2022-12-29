@@ -1,7 +1,9 @@
 import React from 'react';
 
-const MessageBox = ({appUser}:{appUser:object}) => {
+const MessageBox = ({appUser,selectedUser,socket}) => {
+    console.log(socket)
     const user = appUser
+    
     return (
         <div>
             <div className="yourMsg mb-6 flex flex-col ">

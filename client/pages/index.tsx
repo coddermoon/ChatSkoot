@@ -1,10 +1,11 @@
 
 import Head from 'next/head'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { io } from 'socket.io-client'
+
+
 import MessageBox from '../Components/MessageBox'
-
-
 import Sidenav from '../Components/sidenav'
 import TopNav from '../Components/TopNav'
 import Wellcome from '../Components/Wellcome'
@@ -13,9 +14,10 @@ import Wellcome from '../Components/Wellcome'
 
 
 export default function Home() {
+  const socket = useRef<any>()
   const [selectedUser, setSelectedUser] = useState<any>(undefined);
 
-  const [appUser, setAppUser] = useState({})
+  const [appUser, setAppUser] = useState<any>({})
 
   // handle undefined Problem
 
@@ -31,7 +33,14 @@ export default function Home() {
 
   }, [])
 
+// setup io
 
+useEffect(() => {
+
+  socket.current = io('http://localhost:5000')
+  socket.current.on("add-user",appUser._id)
+
+},[appUser])
 
 
   return (
@@ -68,7 +77,9 @@ export default function Home() {
       <div className="chats text-white flex flex-col-reverse px-5 overflow-y-scroll">
 
         <MessageBox
+        socket={socket}
           appUser={appUser}
+          selectedUser= {selectedUser}
         />
 
 

@@ -30,7 +30,7 @@ const Users = ({user, setSelectedUser}) => {
           
           <div>
             <h2 className='text-white  flex-wrap'>{name}</h2>
-            <p className=' text-sm text-secondaryWhite  flex-wrap'>{username}</p>
+            <p className=' text-sm text-secondaryWhite  flex-wrap'>@{username}</p>
           </div>
         </div>
         </div>
