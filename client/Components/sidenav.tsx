@@ -7,6 +7,7 @@ import Users from './users';
 
 const Sidenav = () => {
     const [isOpen, setIsOpen] = useState(true);
+    const [selectedUser,setSelectedUser]= useState({});
     const toggle = () => setIsOpen(!isOpen);
 
     const [users,setUsers] = useState<any[]>([])
@@ -18,6 +19,13 @@ const Sidenav = () => {
       .then(res=>setUsers(res.data))
 
     },[])
+
+    // handle clicked on current users
+
+   const  handleSelectedUser = (id:any)=>{
+    console.log('click on current user',id)
+   
+    }
 
 
     return (
@@ -55,8 +63,12 @@ const Sidenav = () => {
   <div className=' overflow-x-hidden h-[calc(100vh_-_12rem)]  '>
  {
   users.map((user) => <Users
+  
   key ={user._id}
   user={user}
+  handleSelectedUser={handleSelectedUser}
+ 
+
   />)
  }
   </div>
