@@ -3,12 +3,13 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-require('dotenv').config()
-const userRoutes = require('./routes/userRoutes');
+const router = require('./routes/allRoutes');
+const { test } = require('./controller/testcontroler');
 const { register, login, users } = require('./controller/userController');
-const router = require('./routes/userRoutes');
 const socket = require('socket.io');
-const { addMessage, getMessages } = require('./controller/msgControler');
+const { getMessages, addMessage } = require('./controller/messageControler');
+require('dotenv').config()
+
 
 // dotenv required configuration
 
@@ -21,20 +22,14 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-// all route declarations
+// routes declearation
 
+app.use(router,test)
 app.use(router,register)
 app.use(router,login)
 app.use(router,users)
-app.use(router, addMessage);
-app.use(router, getMessages);
-
-
-
-// basic single page workflow
-
-
-
+app.use(router,getMessages)
+app.use(router,addMessage)
 
 // mongodb connections
 mongoose.set('strictQuery', false);
@@ -50,10 +45,10 @@ mongoose.connect(url , {
 })
 .catch(err => console.error(err.message))
 
-
 // listening port
 
 const server =  app.listen(port,()=> console.log('listening on port',port))
+
 
 // intrigate socket to realtime chat
 

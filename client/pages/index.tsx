@@ -1,4 +1,5 @@
 
+import axios from 'axios'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
@@ -40,6 +41,9 @@ export default function Home() {
   const handleMessage = (e)=>{
     e.preventDefault()
     setMsg(e.target.msg.value)
+
+  
+
   }
 
 // setup io
