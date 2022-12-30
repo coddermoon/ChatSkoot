@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import { io } from 'socket.io-client';
 import ChatInput from '../Components/ChatInput';
 import LeftNav from '../Components/LeftNav';
 import MessageBox from '../Components/MessageBox';
@@ -22,6 +23,42 @@ const Home = () => {
         }
     
     })
+// message information
+const [message,setMessage]= useState([])
+const [getmessage,setgetMessage]= useState([])
+
+    // connect socket io frrom chat
+
+    const socket   = io('http://localhost:5000')
+    console.log(socket)
+
+const handleSend :React.FormEventHandler<HTMLFormElement> =(e)=>{
+e.preventDefault()
+const data : any = e.target
+  const message:any = data.msg.value
+  setMessage(message)
+  socket.emit("send-msg",message)
+
+
+
+data.reset()
+
+}
+
+// load chat data from server site
+
+useEffect(()=>{
+
+  socket.on('msg-recieve',(data)=>{
+    
+    setgetMessage(data)
+  })
+
+},[getmessage,message,socket])
+
+console.log(getmessage)
+
+    
 
    
     return (
@@ -59,7 +96,8 @@ const Home = () => {
         <div className="chats text-white flex flex-col-reverse px-5 overflow-y-scroll">
   
           <MessageBox
-        
+        message={message}
+        getmessage={getmessage}
             
           />
   
@@ -77,7 +115,10 @@ const Home = () => {
   
   
   
-<ChatInput/>
+<ChatInput
+handleSend = {handleSend}
+
+/>
   
         </div>
   
