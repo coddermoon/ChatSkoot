@@ -8,6 +8,14 @@ import React, { useEffect } from 'react';
 const Login = () => {
     const router = useRouter()
 
+    useEffect(() => {
+        const token = localStorage.getItem('user');
+        if (token) {
+            router.push('/')
+        }
+    
+    })
+
 
 // get user data and negivate
 

@@ -2,13 +2,22 @@ import axios from 'axios';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 
 
 const Signup = () => {
 const router = useRouter()
 
+
+
+useEffect(() => {
+    const token = localStorage.getItem('user');
+    if (token) {
+        router.push('/')
+    }
+
+})
 
     const handleSubmit:React.FormEventHandler<HTMLFormElement> = async(e) => {
      e.preventDefault()
