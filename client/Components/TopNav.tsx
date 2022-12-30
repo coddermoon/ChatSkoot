@@ -1,12 +1,23 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { FaPowerOff } from 'react-icons/fa'
 const TopNav = ({ selectedUser }:
     {
         selectedUser: any;
     }) => {
-
+const router = useRouter()
     const { name } = selectedUser
+
+
+
+    // handle Logout section
+
+    const handleLogout = ()=>{
+        localStorage.removeItem('user')
+        router.push('/login')
+
+    }
 
     return (
         <div className='shadow-2xl z-20 '>
@@ -34,7 +45,9 @@ const TopNav = ({ selectedUser }:
                 </div>
                 {/* logout button */}
                 <div className="logout">
-                                <FaPowerOff />
+                               <div onClick={handleLogout}>
+                               <FaPowerOff />
+                               </div>
                             </div>
 
             </div>

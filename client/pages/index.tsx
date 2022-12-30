@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 import ChatInput from '../Components/ChatInput';
 import LeftNav from '../Components/LeftNav';
 import MessageBox from '../Components/MessageBox';
@@ -10,7 +11,18 @@ import Wellcome from '../Components/Wellcome';
 
 
 const Home = () => {
+    const router = useRouter()
     const [selectedUser,setSelectedUser]= useState<any>(undefined)
+
+    // handle authentication
+    useEffect(() => {
+        const token = localStorage.getItem('user');
+        if (!token) {
+            router.push('/login')
+        }
+    
+    })
+
    
     return (
         <>
