@@ -1,11 +1,14 @@
 import axios from 'axios';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 
 
 
-const signup = () => {
+const Signup = () => {
+const router = useRouter()
+
 
     const handleSubmit:React.FormEventHandler<HTMLFormElement> = async(e) => {
      e.preventDefault()
@@ -21,7 +24,12 @@ const signup = () => {
 // call api to post data
 
 axios.post(`http://localhost:5000/api/auth/signup`,data)
-.then(data=> console.log(data))
+.then(data=>{
+    console.log(data)
+    router.push("/login")
+    
+    
+})
 .catch(err=>console.error(err.message))
 
 
@@ -84,4 +92,4 @@ axios.post(`http://localhost:5000/api/auth/signup`,data)
     );
 };
 
-export default signup;
+export default Signup;

@@ -3,10 +3,14 @@ import Head from 'next/head';
 import Link from 'next/link';
 import  { useRouter } from 'next/router';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Login = () => {
     const router = useRouter()
+
+
+// get user data and negivate
+
 
 const handleSubmit:React.FormEventHandler<HTMLFormElement> = (event) => {
        event.preventDefault()
