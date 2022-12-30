@@ -5,12 +5,15 @@ import { HiMenuAlt1 } from "react-icons/hi";
 import { RxCrossCircled } from "react-icons/rx";
 import Contacts from './Contacts';
 
-const LeftNav = () => {
+const LeftNav = ({setSelectedUser}:
+    {
+        setSelectedUser: any
+    }) => {
 
     const [isOpen, setIsOpen] = useState(true);
    
     const toggle = () => setIsOpen(!isOpen);
-    const [selectedUser,setSelectedUser]= useState<any>([])
+  
     const [users,setUsers] = useState<any[]>([])
 
     useEffect( ()=>{
@@ -56,7 +59,7 @@ const LeftNav = () => {
   <div className=' overflow-x-hidden h-[calc(100vh_-_12rem)]  '>
  {
   users.map((user) => <Contacts
-  
+    
   key ={user._id}
   user={user}
   setSelectedUser={setSelectedUser}

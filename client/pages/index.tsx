@@ -1,10 +1,16 @@
 import Head from 'next/head';
-import React from 'react';
+import Image from 'next/image';
+import React, { useState } from 'react';
 import LeftNav from '../Components/LeftNav';
+import MessageBox from '../Components/MessageBox';
+import TopNav from '../Components/TopNav';
+import Wellcome from '../Components/Wellcome';
 
 
 
 const Home = () => {
+    const [selectedUser,setSelectedUser]= useState<any>(undefined)
+   
     return (
         <>
             <Head >
@@ -16,9 +22,64 @@ const Home = () => {
 
             {/* main section */}
             <div className="main max-h-screen w-full bg-bgPrimary bg-fixed">
-               <LeftNav/>
-
-
+               <LeftNav
+                 setSelectedUser={setSelectedUser}
+               
+               />
+{
+    !selectedUser ? <Wellcome/>
+    :
+    <main className="main-content relative  max-h-screen w-full md:pl-[280px] lg:pl-[280px]">
+    <div className="z-50 relative">
+      <div className='chatContainer h-screen grid '>
+  
+        <div className="nav text-white">
+  
+          {/* topNav sectiopn  */}
+  
+          <TopNav
+            
+            selectedUser={selectedUser}
+          />
+  
+        </div>
+        <div className="chats text-white flex flex-col-reverse px-5 overflow-y-scroll">
+  
+          <MessageBox
+        
+            
+          />
+  
+  
+  
+        </div>
+  
+        {/* message options */}
+  
+        <div className="msgBox grid  content-center items-center gap-6  text-white">
+  
+  
+  
+          <Image width={70} height={70} src='/images/attachment.png' alt='attachment' />
+  
+  
+  
+          <form >
+            <input type="text" name="msg" className='w-full p-2 rounded outline-none bg-bgSecondary' placeholder="Type a message" />
+          </form>
+  
+        </div>
+  
+  
+  
+  
+      </div>
+    </div>
+    <div>
+  
+    </div>
+  </main>
+}
             </div>
 
 
