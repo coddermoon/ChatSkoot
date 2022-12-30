@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import React, { useState } from 'react';
+import ChatInput from '../Components/ChatInput';
 import LeftNav from '../Components/LeftNav';
 import MessageBox from '../Components/MessageBox';
 import TopNav from '../Components/TopNav';
@@ -64,9 +65,7 @@ const Home = () => {
   
   
   
-          <form >
-            <input type="text" name="msg" className='w-full p-2 rounded outline-none bg-bgSecondary' placeholder="Type a message" />
-          </form>
+<ChatInput/>
   
         </div>
   
