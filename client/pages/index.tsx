@@ -1,4 +1,4 @@
-import { selectClasses } from '@mui/material';
+
 import axios from 'axios';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -14,25 +14,40 @@ import Wellcome from '../Components/Wellcome';
 
 
 const Home = () => {
-  const socket = useRef()
+  const socket:any = useRef()
     const router = useRouter()
     const [selectedUser,setSelectedUser]= useState<any>(undefined)
     const [currentUser,setCurrentUser]= useState<any>(undefined)
     const [messages, setMessages] = useState<any>([]);
     const [receivedMsg,setReceivedMsg]= useState("")
-    // handle authentication
+
+    //get6 logged in user data from local storage
     useEffect(() => {
         const token = localStorage.getItem('user');
         if (!token) {
             router.push('/login')
+        }else{
+          const user : any =  JSON.parse( token)
+// process message for send server and send it
+setCurrentUser(user)
+
         }
     
-    })
-// message information
+    },[router])
+// connectio to socket
 
-   
-    // ?check other thinfs 
-   
+useEffect(()=>{
+
+  if(currentUser){
+    socket.current = io('http://localhost:5000');
+    socket.current.emit("add-user", currentUser._id);
+
+  }
+
+},[currentUser])
+
+
+
 
 
 
@@ -40,16 +55,28 @@ const handleSend :React.FormEventHandler<HTMLFormElement> = async(message)=>{
 
 const data : any = message
 
-  // get api key
-const user : any = await JSON.parse( localStorage.getItem('user')|| '{}')
-// process message for send server and send it
-setCurrentUser(user)
 
+socket.current.emit("send-msg", {
+  to: selectedUser._id,
+  from: data._id,
+  msg:message
+})
 
-
-
-
+// messages filter
+const msgObj = {
+  fromSelf:true,
+  message:data
 }
+const demo = [...messages,msgObj]
+
+setMessages(demo)
+
+
+
+  // get api key
+  console.log( message,demo)
+}
+
 
 // load chat data from server site
 
@@ -95,6 +122,7 @@ setCurrentUser(user)
           <MessageBox
         messages={messages}
         receivedMsg={receivedMsg}
+        socket={socket}
      
             
           />
