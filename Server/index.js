@@ -22,14 +22,7 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-// routes declearation
 
-app.use(router,test)
-app.use(router,register)
-app.use(router,login)
-app.use(router,users)
-app.use(router,getMessages)
-app.use(router,addMessage)
 
 // mongodb connections
 mongoose.set('strictQuery', false);
@@ -44,6 +37,17 @@ mongoose.connect(url , {
     console.log('database connection successful')
 })
 .catch(err => console.error(err.message))
+
+// routes declearation
+
+app.use(router,test)
+app.use(router,register)
+app.use(router,login)
+app.use(router,users)
+app.use(router,getMessages)
+app.use(router,addMessage)
+
+
 
 // listening port
 
@@ -70,13 +74,8 @@ io.on("connection", (socket) => {
   });
 
   socket.on("send-msg", (data) => {
-
-   
-    
-    const sendUserSocket = onlineUsers.get(data.to);
-    console.log(sendUserSocket)
-   
-    if (sendUserSocket) {
+const sendUserSocket = onlineUsers.get(data.to);
+if (sendUserSocket) {
       socket.to(sendUserSocket).emit("msg-recieve", data.msg);
     }
   });

@@ -48,6 +48,8 @@ const Home = () => {
 
   }, [currentUser])
 
+//  working space
+
 
 
 
@@ -62,18 +64,20 @@ const Home = () => {
     if (socket.current) {
 
       socket.current.on('msg-recieve', (msg: any) => {
+      
+        console.log(msg)
 
         const rcvMsg: any = {
           fromSelf: false,
           message: msg
         }
 
-        console.log(rcvMsg)
         setReceivedMsg(rcvMsg)
       })
 
     }
-  }, [])
+  }, [socket,currentUser,selectedUser])
+
 
   // run all arival message
   useEffect(() => {
@@ -100,14 +104,21 @@ const Home = () => {
       message: data,
     });
 
+// getCurrentChat
+
+
+
+
+
     // messages filter
     const msgObj = {
       fromSelf: true,
       message: data
     }
-    const demo = [...messages, msgObj]
+    const msg = [...messages, msgObj]
+    msg.push()
 
-    setMessages(demo)
+    setMessages(msg)
 
 
 
