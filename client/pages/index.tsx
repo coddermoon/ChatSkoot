@@ -14,12 +14,13 @@ import Wellcome from '../Components/Wellcome';
 
 
 const Home = () => {
+
   const socket:any = useRef()
     const router = useRouter()
     const [selectedUser,setSelectedUser]= useState<any>(undefined)
     const [currentUser,setCurrentUser]= useState<any>(undefined)
     const [messages, setMessages] = useState<any>([]);
-    const [receivedMsg,setReceivedMsg]= useState("")
+    const [receivedMsg,setReceivedMsg]= useState<any>(null)
 
     //get6 logged in user data from local storage
     useEffect(() => {
@@ -29,6 +30,7 @@ const Home = () => {
         }else{
           const user : any =  JSON.parse( token)
 // process message for send server and send it
+
 setCurrentUser(user)
 
         }
@@ -51,6 +53,7 @@ useEffect(()=>{
 
 
 
+
 const handleSend :React.FormEventHandler<HTMLFormElement> = async(message)=>{
 
 const data : any = message
@@ -61,6 +64,12 @@ socket.current.emit("send-msg", {
   from: data._id,
   msg:message
 })
+
+await axios.post('http://localhost:5000/addmsg', {
+  from: currentUser._id,
+  to: selectedUser._id,
+  message: data,
+});
 
 // messages filter
 const msgObj = {
@@ -79,6 +88,26 @@ setMessages(demo)
 
 
 // load chat data from server site
+
+useEffect(()=>{
+  if(socket.current){
+
+    socket.current.on('msg-recieve',(msg:any)=>{
+      const rcvMsg :any = {
+        fromSelf:false,
+        message:msg
+      }
+      setReceivedMsg(rcvMsg)
+    })
+
+  }
+},[])
+
+// run all arival message
+useEffect(() =>{
+receivedMsg && setMessages((prev:any)=> [...prev,receivedMsg])
+
+},[receivedMsg])
 
 
 
