@@ -1,7 +1,9 @@
+import { selectClasses } from '@mui/material';
+import axios from 'axios';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { io } from 'socket.io-client';
 import ChatInput from '../Components/ChatInput';
 import LeftNav from '../Components/LeftNav';
@@ -12,9 +14,12 @@ import Wellcome from '../Components/Wellcome';
 
 
 const Home = () => {
+  const socket = useRef()
     const router = useRouter()
     const [selectedUser,setSelectedUser]= useState<any>(undefined)
-
+    const [currentUser,setCurrentUser]= useState<any>(undefined)
+    const [messages, setMessages] = useState<any>([]);
+    const [receivedMsg,setReceivedMsg]= useState("")
     // handle authentication
     useEffect(() => {
         const token = localStorage.getItem('user');
@@ -24,39 +29,31 @@ const Home = () => {
     
     })
 // message information
-const [message,setMessage]= useState([])
-const [getmessage,setgetMessage]= useState([])
 
-    // connect socket io frrom chat
-
-    const socket   = io('http://localhost:5000')
-    console.log(socket)
-
-const handleSend :React.FormEventHandler<HTMLFormElement> =(e)=>{
-e.preventDefault()
-const data : any = e.target
-  const message:any = data.msg.value
-  setMessage(message)
-  socket.emit("send-msg",message)
+   
+    // ?check other thinfs 
+   
 
 
 
-data.reset()
+const handleSend :React.FormEventHandler<HTMLFormElement> = async(message)=>{
+
+const data : any = message
+
+  // get api key
+const user : any = await JSON.parse( localStorage.getItem('user')|| '{}')
+// process message for send server and send it
+setCurrentUser(user)
+
+
+
+
 
 }
 
 // load chat data from server site
 
-useEffect(()=>{
 
-  socket.on('msg-recieve',(data)=>{
-    
-    setgetMessage(data)
-  })
-
-},[getmessage,message,socket])
-
-console.log(getmessage)
 
     
 
@@ -96,8 +93,9 @@ console.log(getmessage)
         <div className="chats text-white flex flex-col-reverse px-5 overflow-y-scroll">
   
           <MessageBox
-        message={message}
-        getmessage={getmessage}
+        messages={messages}
+        receivedMsg={receivedMsg}
+     
             
           />
   
@@ -117,7 +115,7 @@ console.log(getmessage)
   
 <ChatInput
 handleSend = {handleSend}
-
+   
 />
   
         </div>

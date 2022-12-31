@@ -55,7 +55,7 @@ const server =  app.listen(port,()=> console.log('listening on port',port))
 const io = socket(server,
   {
     cors: {
-      origin: '*',
+      origin: 'http://localhost:3000',
       credentials:true,
     }
   })
@@ -70,10 +70,13 @@ io.on("connection", (socket) => {
   });
 
   socket.on("send-msg", (data) => {
+
+   
     
-    const sendUserSocket = onlineUsers.get(data.to);
+    const sendUserSocket = onlineUsers.get(data);
+   
     if (sendUserSocket) {
-      socket.to(sendUserSocket).emit("msg-recieve", data.msg);
+      socket.to(sendUserSocket).broadcast.emit("msg-recieve", data.msg);
     }
   });
 });
