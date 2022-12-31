@@ -41,7 +41,7 @@ const Home = () => {
   useEffect(() => {
 
     if (currentUser) {
-      socket.current = io('http://localhost:5000');
+      socket.current = io('https://chatskoot-server.vercel.app');
       socket.current.emit("add-user", currentUser._id);
 
     }
@@ -98,7 +98,7 @@ const Home = () => {
       msg: message
     })
 
-    await axios.post('http://localhost:5000/addmsg', {
+    await axios.post('https://chatskoot-server.vercel.app/addmsg', {
       from: currentUser._id,
       to: selectedUser._id,
       message: data,
