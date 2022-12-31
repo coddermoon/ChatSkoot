@@ -5,9 +5,10 @@ import { HiMenuAlt1 } from "react-icons/hi";
 import { RxCrossCircled } from "react-icons/rx";
 import Contacts from './Contacts';
 
-const LeftNav = ({setSelectedUser}:
+const LeftNav = ({setSelectedUser,currentUser}:
     {
-        setSelectedUser: any
+        setSelectedUser: any,
+        currentUser: any
     }) => {
 
     const [isOpen, setIsOpen] = useState(true);
@@ -46,7 +47,7 @@ const LeftNav = ({setSelectedUser}:
             alt="a"
           ></Image>
           <div>
-            <h2 className='text-white text-xl flex-wrap'>Mahamodul Hasan Moon</h2>
+            <h2 className='text-white text-xl flex-wrap'>{currentUser?.name}</h2>
           </div>
         </div>
 

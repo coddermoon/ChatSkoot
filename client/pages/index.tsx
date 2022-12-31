@@ -130,7 +130,7 @@ const Home = () => {
       <div className="main max-h-screen w-full bg-bgPrimary bg-fixed">
         <LeftNav
           setSelectedUser={setSelectedUser}
-
+          currentUser={currentUser}
         />
         {
           !selectedUser ? <Wellcome />
