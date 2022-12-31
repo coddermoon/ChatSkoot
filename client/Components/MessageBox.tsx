@@ -8,6 +8,8 @@ const MessageBox = ({ messages, receivedMsg, socket }: {
 
 }) => {
 
+    const senderClass:String = "bg-secondary ml-auto"
+    const receiverClass:String = "bg-primary mr-auto"
 
 
     return (
@@ -20,19 +22,15 @@ const MessageBox = ({ messages, receivedMsg, socket }: {
     className="yourMsg mb-6 flex flex-col ">
 
 
-    <div className="msgTx inline  max-w-[75%] bg-secondary py-2 rounded-l-xl rounded-tr-xl px-3 ml-auto">
+    <div className={`msgTx inline  max-w-[75%] py-2 rounded-l-xl rounded-tr-xl px-3 ${message.fromSelf ? senderClass : receiverClass} `} >
         {message.message}
     </div>
-    <span className='text-right'>3 minutes ago</span>
+    
 
 </div> )
 }
 
 
-            <div className="anotherMsg mb-6 flex flex-col justify-end ">
-                <div className="msgTx inline  max-w-[75%]  bg-primary py-2 rounded-r-xl  rounded-tl-xl px-3 mr-auto">{receivedMsg}</div>
-                <span className='text-left'>just now</span>
-            </div>
         </div>
     );
 };

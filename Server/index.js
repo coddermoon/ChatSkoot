@@ -73,10 +73,11 @@ io.on("connection", (socket) => {
 
    
     
-    const sendUserSocket = onlineUsers.get(data);
+    const sendUserSocket = onlineUsers.get(data.to);
+    console.log(sendUserSocket)
    
     if (sendUserSocket) {
-      socket.to(sendUserSocket).broadcast.emit("msg-recieve", data.msg);
+      socket.to(sendUserSocket).emit("msg-recieve", data.msg);
     }
   });
 });
