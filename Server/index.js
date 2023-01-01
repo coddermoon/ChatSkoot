@@ -59,8 +59,8 @@ const server =  app.listen(port,()=> console.log('listening on port',port))
 const io = socket(server,
   {
     cors: {
-      origin: 'http://chatskootbeta.vercel.app',
-      credentials:true,
+      origin: '*',
+      credentials:false,
     }
   })
 

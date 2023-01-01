@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
 import { io } from 'socket.io-client';
+import useAsyncEffect from 'use-async-effect/types';
 import ChatInput from '../Components/ChatInput';
 import LeftNav from '../Components/LeftNav';
 import MessageBox from '../Components/MessageBox';
@@ -25,7 +26,7 @@ const Home = () => {
   //get6 logged in user data from local storage
   useEffect(() => {
     const token = localStorage.getItem('user');
-    if (!token) {
+    if (!token ) {
       router.push('/login')
     } else {
       const user: any = JSON.parse(token)
@@ -38,17 +39,23 @@ const Home = () => {
   }, [router])
   // connectio to socket
 
+
+
+
   useEffect(() => {
 
     if (currentUser) {
-      socket.current = io('https://chatskoot-server.vercel.app');
+      socket.current = io('http://localhost:5000');
       socket.current.emit("add-user", currentUser._id);
 
     }
 
   }, [currentUser])
 
-//  working space
+//  working space for get current chat
+
+
+
 
 
 
@@ -79,6 +86,7 @@ const Home = () => {
   }, [socket,currentUser,selectedUser])
 
 
+
   // run all arival message
   useEffect(() => {
     receivedMsg && setMessages((prev: any) => [...prev, receivedMsg])
@@ -98,15 +106,11 @@ const Home = () => {
       msg: message
     })
 
-    await axios.post('https://chatskoot-server.vercel.app/addmsg', {
+    await axios.post('http://localhost:5000/addmsg', {
       from: currentUser._id,
       to: selectedUser._id,
       message: data,
     });
-
-// getCurrentChat
-
-
 
 
 
@@ -126,6 +130,19 @@ const Home = () => {
 
   }
 
+  // getCurrentChat
+
+  useEffect(  () => {
+    const data =  currentUser
+
+axios.post('http://localhost:5000/getmsg', {
+      from: data?._id,
+      to: selectedUser?._id,
+    })
+    .then(res=>setMessages(res.data))
+    
+    // setMessages(response.data);
+  }, [currentUser,selectedUser]);
 
 
   return (

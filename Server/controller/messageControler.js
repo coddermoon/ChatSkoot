@@ -3,6 +3,7 @@ const Messages = require("../models/messageModal");
 module.exports.getMessages = async (req, res, next) => {
   try {
     const { from, to } = req.body;
+    
 
     const messages = await Messages.find({ 
       users: {
@@ -16,7 +17,8 @@ module.exports.getMessages = async (req, res, next) => {
         message: msg.message.text,
       };
     });
-    res.json(projectedMessages);
+    
+    res.send(projectedMessages);
   } catch (ex) {
     next(ex);
   }

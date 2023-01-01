@@ -19,7 +19,7 @@ const LeftNav = ({setSelectedUser,currentUser}:
 
     useEffect( ()=>{
 
-     axios.get('https://chatskoot-server.vercel.app/api/users')
+     axios.get('http://localhost:5000/api/users')
       
       .then(res=>setUsers(res.data))
 

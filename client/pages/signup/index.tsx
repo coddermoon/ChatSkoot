@@ -32,7 +32,7 @@ useEffect(() => {
      }
 // call api to post data
 
-axios.post(`https://chatskoot-server.vercel.app/api/auth/signup`,data)
+axios.post(`http://localhost:5000/api/auth/signup`,data)
 .then(data=>{
     console.log(data)
     router.push("/login")

@@ -30,7 +30,7 @@ const handleSubmit:React.FormEventHandler<HTMLFormElement> = (event) => {
 
         // login authenticaton
 
-        axios.post(`https://chatskoot-server.vercel.app/api/auth/login`,data)
+        axios.post(`http://localhost:5000/api/auth/login`,data)
 .then(data=> {
     
     const {status,msg,user} = data.data
